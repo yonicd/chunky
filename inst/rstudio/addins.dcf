@@ -1,0 +1,9 @@
+Name: chunky
+Description: Wraps script in  ```\n\n```{r}
+Binding: chunkify
+Interactive: false
+
+Name: chunkytime
+Description: Wraps script in  ```\n\n```{r Sys.time()}
+Binding: chunkify_time
+Interactive: false
