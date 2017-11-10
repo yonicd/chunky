@@ -17,7 +17,7 @@ chunkify <- function() {
   # to get cursor position
   adc <- rstudioapi::getActiveDocumentContext()
   
-  newend <- adc$selection[[1]]$range$start[[1]]+(adc$selection[[1]]$range$end[[1]]-adc$selection[[1]]$range$start[[1]])+2
+  newend <- adc$selection[[1]]$range$start[[1]]+(adc$selection[[1]]$range$end[[1]]-adc$selection[[1]]$range$start[[1]])+3
   
   adc$selection[[1]]$range$start[[1]] <- adc$selection[[1]]$range$start[[1]]-1
   adc$selection[[1]]$range$end[[1]] <- newend
@@ -36,7 +36,7 @@ chunkify_time <- function(date=Sys.time()) {
   # to get cursor position
   adc <- rstudioapi::getActiveDocumentContext()
   
-  newend <- adc$selection[[1]]$range$start[[1]]+(adc$selection[[1]]$range$end[[1]]-adc$selection[[1]]$range$start[[1]])+2
+  newend <- adc$selection[[1]]$range$start[[1]]+(adc$selection[[1]]$range$end[[1]]-adc$selection[[1]]$range$start[[1]])+3
   
   adc$selection[[1]]$range$start[[1]] <- adc$selection[[1]]$range$start[[1]]-1
   adc$selection[[1]]$range$end[[1]] <- newend
