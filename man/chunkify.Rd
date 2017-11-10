@@ -2,23 +2,16 @@
 % Please edit documentation in R/chunkify.R
 \name{chunkify}
 \alias{chunkify}
-\title{FUNCTION_TITLE}
+\title{Wrap Script in Rmarkdown Chunk}
 \usage{
 chunkify()
 }
 \value{
-OUTPUT_DESCRIPTION
+NOTHING
 }
 \description{
-FUNCTION_DESCRIPTION
+Inputs highlighted text in Rstudio document and wraps it in Rmarkdown Chunk
 }
 \details{
-DETAILS
-}
-\examples{
-\dontrun{
-if(interactive()){
- #EXAMPLE1
- }
-}
+Use \code{\link{chunky_opts}} to set session parameters for addin
 }

@@ -1,13 +1,7 @@
-#' @title FUNCTION_TITLE
-#' @description FUNCTION_DESCRIPTION
-#' @return OUTPUT_DESCRIPTION
-#' @details DETAILS
-#' @examples 
-#' \dontrun{
-#' if(interactive()){
-#'  #EXAMPLE1
-#'  }
-#' }
+#' @title Wrap Script in Rmarkdown Chunk 
+#' @description Inputs highlighted text in Rstudio document and wraps it in Rmarkdown Chunk
+#' @return NOTHING
+#' @details Use \code{\link{chunky_opts}} to set session parameters for addin
 #' @rdname chunkify
 #' @export 
 #' @importFrom rstudioapi insertText getActiveDocumentContext setCursorPosition
