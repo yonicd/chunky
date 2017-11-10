@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: person("Jonathan", "Sidi", email = "yonicd@gmail.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 Depends: R (>= 3.3.3)
-Imports: rstudioapi
+Imports: rstudioapi,stats
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
