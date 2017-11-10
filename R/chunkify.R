@@ -24,7 +24,7 @@ chunkify <- function() {
   adc$selection[[1]]$range$end[[2]] <- 1
   
   # Insert text that splits the code chunk in two
-  rstudioapi::insertText(location =  adc$selection[[1]]$range$start,"\n```{r}")
+  rstudioapi::insertText(location =  adc$selection[[1]]$range$start,"\n```{r}\n")
   rstudioapi::insertText(location =  adc$selection[[1]]$range$end,"```\n")
 
 }
@@ -43,7 +43,7 @@ chunkify_time <- function(date=Sys.time()) {
   adc$selection[[1]]$range$end[[2]] <- 1
   
   # Insert text that splits the code chunk in two
-  rstudioapi::insertText(location =  adc$selection[[1]]$range$start,sprintf("\n```{r %s}",date))
+  rstudioapi::insertText(location =  adc$selection[[1]]$range$start,sprintf("\n```{r %s}\n",date))
   rstudioapi::insertText(location =  adc$selection[[1]]$range$end,"```\n")
 
 }
