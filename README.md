@@ -6,7 +6,10 @@ Rstudio addin to wrap script in Rmarkdown chunks
 
 ## Usage
 
-  - Highlight text in Rmd editor. Run chunky addin from `RStudio Addins Menu` (setting hotkey suggested)
+  - Setting `chunky_opts$set(list(full_doc=TRUE))` and run `chunky` addin. `chunky` will convert entire active document by splitting script into chunks by `chunky_opts$get('token')`. 
+    - The default token is the output from a `knitr::purl` conversion `(## ----chunk name,chunk options----)`.
+
+  - Setting `chunky_opts$set(list(full_doc=FALSE))` Highlight text in Rmd editor. Run `chunky` addin from `RStudio Addins Menu` (setting hotkey suggested).
 
 
 
@@ -14,7 +17,11 @@ Rstudio addin to wrap script in Rmarkdown chunks
 
 Like in `knitr::opts_chunk` you can set session options for the addin
 
-  - **basic** Return minimal chunk
+  - **full_doc** boolean, controls if entire document is split by token or user highlights text and text is wrapped in chunk.
+
+  - **token** character, token that is used to split script into chunks when `full_doc` `chunky` option is set to `TRUE`.
+
+  - **basic** boolean, Return minimal chunk
   
 ```r
 
@@ -26,9 +33,9 @@ Like in `knitr::opts_chunk` you can set session options for the addin
 
 ``` 
 
-  - **name** name used in chunk
-  - **counter** append a counter to the chunnk name
-  - **chunk_opts** knitr chunk options to put in chunk
+  - **name** character, name used in chunk
+  - **counter** boolean, append a counter to the chunnk name
+  - **chunk_opts** character, knitr chunk options to put in chunk
   
   
   - get session options of chunky

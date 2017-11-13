@@ -1,6 +1,6 @@
 Package: chunky
 Title: Rstudio Addin to Wrap Script in Rmarkdown Chunks 
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: person("Jonathan", "Sidi", email = "yonicd@gmail.com", role = c("aut", "cre"))
 Description: Rstudio addin to wrap script in Rmarkdown chunks with chunk 
   names and knitr chunk options.
