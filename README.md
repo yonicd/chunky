@@ -43,7 +43,7 @@ Like in `knitr::opts_chunk` you can set session options for the addin
 ```r
 chunky_opts$get()
 
-$basic 
+$basic
 [1] FALSE
 
 $name
@@ -54,6 +54,12 @@ $counter
 
 $chunk_opts
 NULL
+
+$full_doc
+[1] FALSE
+
+$token
+[1] "^#{2} -{4}(.*?)-{4+}$"
 ```
 
   - set session options of chunky
