@@ -2,16 +2,19 @@
 % Please edit documentation in R/chunkify.R
 \name{chunkify}
 \alias{chunkify}
-\title{Wrap Script in Rmarkdown Chunk}
+\title{Interactivley Create Rmarkdown Chunks}
 \usage{
 chunkify()
 }
-\value{
-NOTHING
-}
 \description{
-Inputs highlighted text in Rstudio document and wraps it in Rmarkdown Chunk
+Addin that splits full documents into Rmarkdown chunks or 
+wraps highlighted text in an active RStudio document editor in a Rmarkdown chunk.
 }
 \details{
-Use \code{\link{chunky_opts}} to set session parameters for addin
+Setting \code{\link{chunky_opts}}$set(list(full_doc=TRUE)) chunky will convert entire document by
+\code{\link{chunky_opts}}$get('token'). The default token is the output from a \code{\link[knitr]{purl}}
+conversion (## ----chunk name,chunk options----).
+
+Setting \code{\link{chunky_opts}}$set(list(full_doc=FALSE)), user highlights text and chunky will
+ wrap a new Rmarkdown chunk around it, utilizing the other options in \code{\link{chunky_opts}}.
 }

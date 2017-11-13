@@ -1,14 +1,55 @@
-#' @title Wrap Script in Rmarkdown Chunk 
-#' @description Inputs highlighted text in Rstudio document and wraps it in Rmarkdown Chunk
-#' @return NOTHING
-#' @details Use \code{\link{chunky_opts}} to set session parameters for addin
+#' @title Interactivley Create Rmarkdown Chunks 
+#' @description Addin that splits full documents into Rmarkdown chunks or 
+#' wraps highlighted text in an active RStudio document editor in a Rmarkdown chunk.
+#' @return NULL
+#' @details
+#' 
+#' Setting \code{\link{chunky_opts}}$set(list(full_doc=TRUE)) chunky will convert entire document by
+#' \code{\link{chunky_opts}}$get('token'). The default token is the output from a \code{\link[knitr]{purl}}
+#' conversion (## ----chunk name,chunk options----).
+#' 
+#' Setting \code{\link{chunky_opts}}$set(list(full_doc=FALSE)), user highlights text and chunky will
+#'  wrap a new Rmarkdown chunk around it, utilizing the other options in \code{\link{chunky_opts}}.
+#' 
 #' @rdname chunkify
 #' @export 
-#' @importFrom rstudioapi insertText getActiveDocumentContext setCursorPosition
 chunkify <- function() {
   
-  # Get document context
-  # to get cursor position
+  if(chunky_opts$get('full_doc')){
+    chunkify_doc()
+  }else{
+    chunkify_section()
+  }
+  
+}
+
+#' @importFrom rstudioapi getActiveDocumentContext
+chunkify_doc <- function(){
+  
+  adc <- rstudioapi::getActiveDocumentContext()
+  
+  find_chunks <- grep(chunky_opts$get('token'),adc$contents)
+  
+  if(length(find_chunks)==0) return(NULL)
+  
+  chunk_idx <- mapply(seq,find_chunks,to=c(find_chunks[-1]-1,length(adc$contents)))
+  
+  new_chunks <- lapply(chunk_idx,function(x){
+   
+    this <- adc$contents[x]
+    this[1] <- sprintf("```{r%s}",gsub('[#-]','',this[1]))
+    this[length(x)+1] <- '```'
+    this
+  })
+  
+  new_text <- c(adc$contents[1:chunk_idx[[1]][1]-1],unlist(new_chunks))
+
+  cat(new_text,file=adc$path,sep='\n')
+    
+}
+
+#' @importFrom rstudioapi insertText getActiveDocumentContext setCursorPosition
+chunkify_section <- function(){
   adc <- rstudioapi::getActiveDocumentContext()
   
   newend <- adc$selection[[1]]$range$start[[1]]+(adc$selection[[1]]$range$end[[1]]-adc$selection[[1]]$range$start[[1]])+3
@@ -26,16 +67,13 @@ chunkify <- function() {
     }else{
       start_text <- paste(start_text,chunky_opts$get('name'))
     }
-      
-  
-  
-  if(!is.null(chunky_opts$get('chunk_opts')))
-    start_text <- paste(start_text,chunky_opts$get('chunk_opts'),sep=',')}
+    
+    if(!is.null(chunky_opts$get('chunk_opts')))
+      start_text <- paste(start_text,chunky_opts$get('chunk_opts'),sep=',')}
   
   start_text <- paste0(start_text,'}\n')
   
   # Insert text that splits the code chunk in two
   rstudioapi::insertText(location =  adc$selection[[1]]$range$start,start_text)
   rstudioapi::insertText(location =  adc$selection[[1]]$range$end,"\n```\n")
-
 }

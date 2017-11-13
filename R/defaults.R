@@ -85,7 +85,9 @@ chunky_opts <- new_defaults(list(
   basic=FALSE,
   name='chunky',
   counter=TRUE,
-  chunk_opts=NULL
+  chunk_opts=NULL,
+  full_doc=FALSE,
+  token='^#{2} -{4}(.*?)-{4+}$'
 ))
 
 #' @rdname chunkyOpts
