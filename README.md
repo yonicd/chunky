@@ -1,5 +1,7 @@
 # chunky
 
+chunky has been made part of [remedy](https://github.com/ThinkR-open/remedy). For an updated script use the chunk addins in remedy.
+
 Rstudio addin to wrap script in Rmarkdown chunks 
 
 
